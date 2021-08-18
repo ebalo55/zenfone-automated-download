@@ -24,7 +24,7 @@ brew install jq gnu-sed wget
 
 ## Automatic download script
 ```bash
-curl -s http://[YOUR LOCAL WIRELESS FILE TRANSFER DEVICE]/file/[PATH OF THE FOLDER]/ | jq '.result' | jq 'map(.name)' | tail -n +2 | head -n -1 | sed -e sed -e 's/  "//g' -e 's/"//g' -e 's/,//g' -e 's/^/http:\/\/[YOUR LOCAL WIRELESS FILE TRANSFER DEVICE]\/file\/[PATH OF THE FOLDER]\//g' | xargs wget
+curl -s http://192.168.1.2:55432/file/Memoria%20interna/CamScanner/ | jq '.result' | jq 'map(.name)' | tail -n +2 | head -n -1 | sed -e 's/  "//g' -e 's/"//g' -e 's/,//g' | jq -rR @uri | sed -e 's/^/http:\/\/192.168.1.2:55432\/file\/Memoria%20interna\/CamScanner\//g' | xargs wget
 ```
 
 In order for the script to correctly work you have to substitute:
